@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.developer.sdklibrary">
 
-    <application>
+    <application android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity"></activity>
     </application>
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
