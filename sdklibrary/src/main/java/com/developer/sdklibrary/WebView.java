@@ -37,6 +37,7 @@ public class WebView {
         Intent intent = new Intent(appContext, MainActivity.class);
         intent.putExtra(MainActivity.DATA_NAME, firstname);
         intent.putExtra(MainActivity.DATA_AGE, dob);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         appContext.startActivity(intent);
 
     }
