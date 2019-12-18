@@ -8,7 +8,7 @@ import android.widget.Toast;
 public class WebView {
 
     private static WebView instance;
-    private final Application appContext;
+    private static Application appContext = null;
 
     WebView(Application application) {
         this.appContext = application;
@@ -33,7 +33,7 @@ public class WebView {
 
     }
 
-    public void openWebView(String firstname, String dob) {
+    public static void openWebView(String firstname, String dob) {
         Intent intent = new Intent(appContext, MainActivity.class);
         intent.putExtra(MainActivity.DATA_NAME, firstname);
         intent.putExtra(MainActivity.DATA_AGE, dob);
