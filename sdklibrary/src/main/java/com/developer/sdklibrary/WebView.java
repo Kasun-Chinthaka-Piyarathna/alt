@@ -1,13 +1,43 @@
 package com.developer.sdklibrary;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 public class WebView {
 
-    public static void s(Context c, String message){
+    private static WebView instance;
+    private final Application appContext;
 
-        Toast.makeText(c,message,Toast.LENGTH_SHORT).show();
+    WebView(Application application) {
+        this.appContext = application;
+    }
+
+    public static void init(Application application) {
+        instance = new WebView(application);
+
+    }
+
+    public static WebView getInstance() {
+        if (instance == null) {
+            throw new IllegalStateException("Webview not initialized");
+        }
+        return instance;
+    }
+
+
+    public static void displayToastMsg(Context c, String message) {
+
+        Toast.makeText(c, message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void openWebView(String firstname, String dob) {
+        Intent intent = new Intent(appContext, MainActivity.class);
+        intent.putExtra(MainActivity.DATA_NAME, firstname);
+        intent.putExtra(MainActivity.DATA_AGE, dob);
+        appContext.startActivity(intent);
 
     }
 }
