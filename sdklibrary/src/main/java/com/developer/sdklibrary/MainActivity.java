@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         wvEHR = findViewById(R.id.wvEMH);
         wvEHR.getSettings().setJavaScriptEnabled(true);
         wvEHR.getSettings().setDomStorageEnabled(true);
-        wvEHR.loadUrl(" http://192.168.8.102:3000/");
+        wvEHR.loadUrl("http://192.168.1.205:3000/");
         wvEHR.addJavascriptInterface(new JSInterface(), "Android");
 
         String name, age;
