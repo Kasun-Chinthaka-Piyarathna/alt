@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         wvEHR = findViewById(R.id.wvEMH);
         wvEHR.getSettings().setJavaScriptEnabled(true);
         wvEHR.getSettings().setDomStorageEnabled(true);
-        wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
+        wvEHR.loadUrl("http://192.168.8.103:3000/");
+        //wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
         wvEHR.addJavascriptInterface(new JSInterface(), "Android");
 
         String phoneNumber, firstName, lastName, authToken, appId, jsonData;
