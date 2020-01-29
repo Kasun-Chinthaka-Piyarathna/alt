@@ -33,10 +33,14 @@ public class WebView {
 
     }
 
-    public static void openWebView(String firstname, String dob) {
+    public static void openWebView(String phoneNumber, String firstName, String lastName, String authToken, String appId, String jsonData) {
         Intent intent = new Intent(appContext, MainActivity.class);
-        intent.putExtra(MainActivity.DATA_NAME, firstname);
-        intent.putExtra(MainActivity.DATA_AGE, dob);
+        intent.putExtra(MainActivity.DATA_PHONE_NUMBER, phoneNumber);
+        intent.putExtra(MainActivity.DATA_FIRST_NAME, firstName);
+        intent.putExtra(MainActivity.DATA_LAST_NAME, lastName);
+        intent.putExtra(MainActivity.DATA_AUTH_TAKEN, authToken);
+        intent.putExtra(MainActivity.DATA_APP_ID, appId);
+        intent.putExtra(MainActivity.DATA_JSON_DATA, jsonData);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         appContext.startActivity(intent);
 

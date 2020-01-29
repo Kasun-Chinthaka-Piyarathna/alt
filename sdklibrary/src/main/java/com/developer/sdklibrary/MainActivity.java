@@ -17,8 +17,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String DATA_NAME = "name";
-    public static final String DATA_AGE = "age";
+    public static final String DATA_PHONE_NUMBER = "phoneNumber";
+    public static final String DATA_FIRST_NAME = "firstName";
+    public static final String DATA_LAST_NAME = "lastName";
+    public static final String DATA_AUTH_TAKEN = "authToken";
+    public static final String DATA_APP_ID = "appId";
+    public static final String DATA_JSON_DATA = "jsonData";
     private static final String JS_FUNCTION_INIT = "token";
     private static final String TAG = "EMHActivity";
 
@@ -36,15 +40,23 @@ public class MainActivity extends AppCompatActivity {
         wvEHR.loadUrl("http://192.168.1.206:3000/");
         wvEHR.addJavascriptInterface(new JSInterface(), "Android");
 
-        String name, age;
+        String phoneNumber, firstName, lastName, authToken, appId, jsonData;
 
         Intent intent = getIntent();
-        name = checkEmpty(intent.getStringExtra(DATA_NAME));
-        age = checkEmpty(intent.getStringExtra(DATA_AGE));
+        phoneNumber = checkEmpty(intent.getStringExtra(DATA_PHONE_NUMBER));
+        firstName = checkEmpty(intent.getStringExtra(DATA_FIRST_NAME));
+        lastName = checkEmpty(intent.getStringExtra(DATA_LAST_NAME));
+        authToken = checkEmpty(intent.getStringExtra(DATA_AUTH_TAKEN));
+        appId = checkEmpty(intent.getStringExtra(DATA_APP_ID));
+        jsonData = checkEmpty(intent.getStringExtra(DATA_JSON_DATA));
 
         Map<String, String> map = new HashMap<String, String>();
-        map.put(DATA_NAME, name);
-        map.put(DATA_AGE, age);
+        map.put(DATA_PHONE_NUMBER, phoneNumber);
+        map.put(DATA_FIRST_NAME, firstName);
+        map.put(DATA_LAST_NAME, lastName);
+        map.put(DATA_AUTH_TAKEN, authToken);
+        map.put(DATA_APP_ID, appId);
+        map.put(DATA_JSON_DATA, jsonData);
 
         final JSONObject json = new JSONObject(map);
 
