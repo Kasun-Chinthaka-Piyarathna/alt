@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 public class WebView {
 
     private static WebView instance;
@@ -30,6 +32,16 @@ public class WebView {
     public static void displayToastMsg(Context c, String message) {
 
         Toast.makeText(c, message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    public static void attachListener(MainActivity.Callback<String> callback) {
+        MainActivity.callback = callback;
+    }
+
+    public static String getData() {
+
+        return MainActivity.returnData;
 
     }
 

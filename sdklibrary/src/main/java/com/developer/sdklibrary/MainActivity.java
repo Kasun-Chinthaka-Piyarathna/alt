@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String DATA_JSON_DATA = "jsonData";
     private static final String JS_FUNCTION_INIT = "token";
     private static final String TAG = "EMHActivity";
+    public static String returnData;
+
+    public static Callback<String> callback = null;
 
     android.webkit.WebView wvEHR;
 
@@ -108,7 +111,13 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void backToDevice(String backToAndroidData) {
             Log.d("DataFromWeb", backToAndroidData);
-            Toast.makeText(mContext, backToAndroidData, Toast.LENGTH_SHORT).show();
+            callback.onSuccess(backToAndroidData);
         }
+    }
+
+    public interface Callback<T> {
+
+        void onSuccess(T result);
+
     }
 }
