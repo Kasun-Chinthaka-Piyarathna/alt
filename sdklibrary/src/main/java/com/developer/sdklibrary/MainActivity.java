@@ -1,12 +1,15 @@
 package com.developer.sdklibrary;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,20 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private static final String JS_FUNCTION_INIT = "token";
     private static final String TAG = "EMHActivity";
 
+    android.webkit.WebView wvEHR;
+
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        android.webkit.WebView wvEHR;
-
         wvEHR = findViewById(R.id.wvEMH);
         wvEHR.getSettings().setJavaScriptEnabled(true);
         wvEHR.getSettings().setDomStorageEnabled(true);
         wvEHR.loadUrl("http://192.168.8.102:3000/");
         //wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
-        wvEHR.addJavascriptInterface(new JSInterface(), "Android");
+        wvEHR.addJavascriptInterface(new JSInterface(), "mobile");
 
         String phoneNumber, firstName, lastName, authToken, appId, jsonData;
 
@@ -78,14 +81,34 @@ public class MainActivity extends AppCompatActivity {
         return text;
     }
 
-    private class JSInterface {
-        JSInterface() {
+    @Override
+    public void onBackPressed() {
+        if (wvEHR.canGoBack())
+            wvEHR.goBack();
+        else
+            super.onBackPressed();
 
+    }
+
+    private class JSInterface {
+        Context mContext;
+
+        JSInterface() {
+        }
+
+        JSInterface(Context c) {
+            mContext = c;
         }
 
         @JavascriptInterface
         public void pageClosed() {
             MainActivity.this.finish();
+        }
+
+        @JavascriptInterface
+        public void backToDevice(String backToAndroidData) {
+            Log.d("DataFromWeb", backToAndroidData);
+            Toast.makeText(mContext, backToAndroidData, Toast.LENGTH_SHORT).show();
         }
     }
 }
