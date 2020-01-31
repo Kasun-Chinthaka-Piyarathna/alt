@@ -1,7 +1,6 @@
 package com.developer.sdklibrary;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         wvEHR.getSettings().setJavaScriptEnabled(true);
         wvEHR.getSettings().setDomStorageEnabled(true);
         wvEHR.loadUrl("http://192.168.8.101:3000/");
-       // wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
+        // wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
         wvEHR.addJavascriptInterface(new JSInterface(), "mobile");
 
         String phoneNumber, firstName, lastName, authToken, appId, jsonData;
@@ -95,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public interface Callback<T> {
+
+        void onSuccess(T result);
+
+    }
+
     private class JSInterface {
         Context mContext;
 
@@ -115,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d("DataFromWeb", backToAndroidData);
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put("token",true );
-                jsonObject.put("value",backToAndroidData );
+                jsonObject.put("token", true);
+                jsonObject.put("value", backToAndroidData);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -127,18 +131,12 @@ public class MainActivity extends AppCompatActivity {
         public void openExternalLink(String url) {
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put("token",false );
-                jsonObject.put("value",url );
+                jsonObject.put("token", false);
+                jsonObject.put("value", url);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public interface Callback<T> {
-
-        void onSuccess(T result);
-
     }
 }

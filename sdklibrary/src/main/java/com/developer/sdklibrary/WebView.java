@@ -35,7 +35,7 @@ public class WebView {
 
     }
 
-    public static void attachListener(MainActivity.Callback<String> callback) {
+    public static void attachListener(MainActivity.Callback<JSONObject> callback) {
         MainActivity.callback = callback;
     }
 
