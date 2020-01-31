@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "EMHActivity";
     public static String returnData;
 
-    public static Callback<String> callback = null;
+    public static Callback<JSONObject> callback = null;
+
 
     android.webkit.WebView wvEHR;
 
@@ -111,7 +113,26 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void backToDevice(String backToAndroidData) {
             Log.d("DataFromWeb", backToAndroidData);
-            callback.onSuccess(backToAndroidData);
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("token",true );
+                jsonObject.put("value",backToAndroidData );
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            callback.onSuccess(jsonObject);
+        }
+
+        @JavascriptInterface
+        public void openExternalLink(String url) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("token",false );
+                jsonObject.put("value",url );
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            callback.onSuccess(jsonObject);
         }
     }
 
