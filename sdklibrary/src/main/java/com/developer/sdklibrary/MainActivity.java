@@ -117,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject.put("token",true );
                 jsonObject.put("value",backToAndroidData );
+                callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            callback.onSuccess(jsonObject);
         }
 
         @JavascriptInterface
@@ -129,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject.put("token",false );
                 jsonObject.put("value",url );
+                callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            callback.onSuccess(jsonObject);
         }
     }
 
