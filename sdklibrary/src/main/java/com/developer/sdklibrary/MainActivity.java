@@ -3,6 +3,8 @@ package com.developer.sdklibrary;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
@@ -74,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 view.evaluateJavascript(JS_FUNCTION_INIT + "(" + json.toString() + ")", null);
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE))
+            { WebView.setWebContentsDebuggingEnabled(true); }
+        }
 
     }
 
