@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (wvEHR.canGoBack())
-            wvEHR.goBack();
-        else
-            super.onBackPressed();
+//        if (wvEHR.canGoBack())
+//            wvEHR.goBack();
+//        else
+//            super.onBackPressed();
 
     }
 
