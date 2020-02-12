@@ -127,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject.put("token", true);
                 jsonObject.put("value", backToAndroidData);
+                jsonObject.put("meta_pres", false);
+                jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -139,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject.put("token", false);
                 jsonObject.put("value", url);
+                jsonObject.put("meta_pres", false);
+                jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -147,10 +151,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         @JavascriptInterface
-        public void addPrescriptionMetaData(String status) {
+        public void addPrescriptionMetaData(Boolean status) {
             JSONObject jsonObject = new JSONObject();
             try {
+                jsonObject.put("token", false);
+                jsonObject.put("value", null);
                 jsonObject.put("meta_pres", status);
+                jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -159,10 +166,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         @JavascriptInterface
-        public void investigationRequested(Boolean requested) {
+        public void addLabMetaData(Boolean status) {
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put("investigationRequested", requested);
+                jsonObject.put("token", false);
+                jsonObject.put("value", null);
+                jsonObject.put("meta_pres", false);
+                jsonObject.put("meta_lab", status);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
