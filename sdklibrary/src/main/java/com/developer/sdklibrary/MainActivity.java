@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject.put("token", true);
                 jsonObject.put("value", backToAndroidData);
+                jsonObject.put("objId", "");
                 jsonObject.put("meta_pres", false);
                 jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject.put("token", false);
                 jsonObject.put("value", url);
+                jsonObject.put("objId", "");
                 jsonObject.put("meta_pres", false);
                 jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
@@ -151,15 +153,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         @JavascriptInterface
-        public void addPrescriptionMetaData(Boolean status) {
-            if(status==null){
-                status = true;
-            }
+        public void addPrescriptionMetaData(String objId) {
+
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("token", false);
                 jsonObject.put("value", "");
-                jsonObject.put("meta_pres", status);
+                jsonObject.put("objId", objId);
+                jsonObject.put("meta_pres", true);
                 jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
@@ -169,16 +170,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         @JavascriptInterface
-        public void addLabMetaData(Boolean status) {
-            if(status==null){
-                status = true;
-            }
+        public void addLabMetaData(String objId) {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("token", false);
                 jsonObject.put("value", "");
+                jsonObject.put("objId", objId);
                 jsonObject.put("meta_pres", false);
-                jsonObject.put("meta_lab", status);
+                jsonObject.put("meta_lab", true);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
