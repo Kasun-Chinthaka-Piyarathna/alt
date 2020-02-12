@@ -152,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
 
         @JavascriptInterface
         public void addPrescriptionMetaData(Boolean status) {
+            if(status==null){
+                status = true;
+            }
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("token", false);
@@ -167,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
 
         @JavascriptInterface
         public void addLabMetaData(Boolean status) {
+            if(status==null){
+                status = true;
+            }
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("token", false);
