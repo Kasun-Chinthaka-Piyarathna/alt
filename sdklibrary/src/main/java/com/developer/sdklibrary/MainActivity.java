@@ -144,5 +144,28 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+
+        @JavascriptInterface
+        public void prescriptionRequested(Boolean requested) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("prescriptionRequested", requested);
+                callback.onSuccess(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @JavascriptInterface
+        public void investigationRequested(Boolean requested) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("investigationRequested", requested);
+                callback.onSuccess(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
