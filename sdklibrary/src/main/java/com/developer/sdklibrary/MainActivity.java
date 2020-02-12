@@ -147,15 +147,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         @JavascriptInterface
-        public void prescriptionRequested(String requested) {
+        public void addPrescriptionMetaData(String status) {
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put("prescriptionRequested", requested);
+                jsonObject.put("meta_pres", status);
                 callback.onSuccess(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+
 
         @JavascriptInterface
         public void investigationRequested(Boolean requested) {
