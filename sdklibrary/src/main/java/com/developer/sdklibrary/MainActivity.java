@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         @JavascriptInterface
-        public void prescriptionRequested(Boolean requested) {
+        public void prescriptionRequested(String requested) {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("prescriptionRequested", requested);
