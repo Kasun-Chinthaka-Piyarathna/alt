@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("token", false);
-                jsonObject.put("value", null);
+                jsonObject.put("value", "");
                 jsonObject.put("meta_pres", status);
                 jsonObject.put("meta_lab", false);
                 callback.onSuccess(jsonObject);
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("token", false);
-                jsonObject.put("value", null);
+                jsonObject.put("value", "");
                 jsonObject.put("meta_pres", false);
                 jsonObject.put("meta_lab", status);
                 callback.onSuccess(jsonObject);
