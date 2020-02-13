@@ -140,20 +140,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        @JavascriptInterface
-        public void openExternalLink(String url) {
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put("token", false);
-                jsonObject.put("value", url);
-                jsonObject.put("objId", "");
-                jsonObject.put("meta_pres", false);
-                jsonObject.put("meta_lab", false);
-                callback.onSuccess(jsonObject);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+
 
 
         @JavascriptInterface
@@ -195,5 +182,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(callIntent);
         }
 
+        @JavascriptInterface
+        public void openExternalLink(String url) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+        }
     }
 }
