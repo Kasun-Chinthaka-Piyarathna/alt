@@ -1,11 +1,9 @@
 package com.developer.sdklibrary;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String DATA_APP_ID = "appId";
     public static final String DATA_JSON_DATA = "jsonData";
     private static final String JS_FUNCTION_INIT = "token";
-    private static final String TAG = "EMHActivity";
+    private static final String TAG = "MainActivity";
     public static String returnData;
 
     public static Callback<JSONObject> callback = null;
@@ -48,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         wvEHR = findViewById(R.id.wvEMH);
         wvEHR.getSettings().setJavaScriptEnabled(true);
         wvEHR.getSettings().setDomStorageEnabled(true);
-//        wvEHR.loadUrl("http://192.168.1.68:3000/");
-        wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
+        wvEHR.loadUrl("http://192.168.1.101:3000/");
+        //wvEHR.loadUrl("https://dev.gen2.odoc.life/di");
         wvEHR.addJavascriptInterface(new JSInterface(), "mobile");
 
         String phoneNumber, firstName, lastName, authToken, appId, jsonData;
@@ -94,15 +92,6 @@ public class MainActivity extends AppCompatActivity {
         return text;
     }
 
-    @Override
-    public void onBackPressed() {
-//        if (wvEHR.canGoBack())
-//            wvEHR.goBack();
-//        else
-//            super.onBackPressed();
-
-    }
-
     public interface Callback<T> {
 
         void onSuccess(T result);
@@ -139,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-
-
 
         @JavascriptInterface
         public void addPrescriptionMetaData(String objId) {
